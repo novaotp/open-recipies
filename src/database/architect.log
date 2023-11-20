@@ -1,0 +1,70 @@
+0    [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ArchitectUtils  - Log4J configured successfully
+274  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+330  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+331  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+363  [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+37650 [Thread-5] ERROR ca.sqlpower.architect.swingui.action.CheckForUpdateAction  - Fail to retrieve current version number!
+4383669 [AWT-EventQueue-0] ERROR ca.sqlpower.architect.swingui.KettleDataSourceOptionsPanel  -  The map is: {}
+4387067 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+CREATE TABLE public.ingredient (
+                id INTEGER NOT NULL,
+                name VARCHAR(50) NOT NULL,
+                CONSTRAINT pk_ingredient PRIMARY KEY (id)
+)
+4387071 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE public.account (
+                id INTEGER NOT NULL,
+                first_name VARCHAR(50) NOT NULL,
+                last_name VARCHAR(50) NOT NULL,
+                email VARCHAR(80) NOT NULL,
+                password VARCHAR NOT NULL,
+                CONSTRAINT pk_account PRIMARY KEY (id)
+)
+4387071 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE public.recipy (
+                id INTEGER NOT NULL,
+                author_id INTEGER NOT NULL,
+                name VARCHAR(80) NOT NULL,
+                time INTEGER NOT NULL,
+                text VARCHAR NOT NULL,
+                CONSTRAINT pk_recipy PRIMARY KEY (id)
+)
+4387071 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+CREATE TABLE public.recipy_ingredient (
+                id INTEGER NOT NULL,
+                recipy_id INTEGER NOT NULL,
+                ingredient_id INTEGER NOT NULL,
+                CONSTRAINT pk_recipy_ingredient PRIMARY KEY (id)
+)
+4387072 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER TABLE public.recipy_ingredient ADD CONSTRAINT ingredient_recipy_ingredients_fk
+FOREIGN KEY (ingredient_id)
+REFERENCES public.ingredient (id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+4387072 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE public.recipy ADD CONSTRAINT fk_recipy_account
+FOREIGN KEY (author_id)
+REFERENCES public.account (id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+4387072 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE public.recipy_ingredient ADD CONSTRAINT recipy_recipy_ingredients_fk
+FOREIGN KEY (recipy_id)
+REFERENCES public.recipy (id)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+4387087 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - The list size is :7

@@ -7,5 +7,6 @@
 </head>
 <body>
   Welcome to Open Recipies
+  <a href="/auth/sign-up">Sign Up</a>
 </body>
 </html>
