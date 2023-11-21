@@ -1,7 +1,8 @@
 <?php
 
-require_once('E:\ANNEE_2023-2024\PR_WEB\P_Practice\P0009\open-recipies/src/models/user.php');
-require_once('E:\ANNEE_2023-2024\PR_WEB\P_Practice\P0009\open-recipies/src/services/databaseService.php');
+require_once($_SERVER["DOCUMENT_ROOT"] . '/src/models/user.php');
+require_once($_SERVER["DOCUMENT_ROOT"] . '/src/models/response.php');
+require_once($_SERVER["DOCUMENT_ROOT"] . '/src/services/databaseService.php');
 
 /** A repository to manage CRUD operations on the user table. */
 class UserRepository
@@ -13,7 +14,38 @@ class UserRepository
     $this->db = (new DatabaseService())::getInstance();
   }
 
-  private function hash_password(string $password)
+  /**
+   * Checks if the user's credentials match those in the database.
+   * @param User $user The user whose credentials to check
+   */
+  public function checkCredentials(User $user): Response {
+    $query = $this->db->prepare('SELECT * FROM user WHERE email = ? LIMIT 1;');
+    $query->bindValue(1, $user->email);
+    $query->execute();
+    $result = $query->fetch();
+
+    if ($result && password_verify($user->password, $result['password'])) {
+      return new Response(true, "Valid credentials.", $result['id']);
+    }
+
+    return new Response(false, 'Invalid credentials.');
+  }
+
+  private function emailExists(string $email)
+  {
+    $query = $this->db->prepare("SELECT * FROM user WHERE email = ?;");
+    $query->bindValue(1, $email);
+    $query->execute();
+    $result = $query->fetch();
+
+    if ($result && $result['email'] == $email) {
+      return true;
+    }
+
+    return false;
+  }
+
+  private function hashPassword(string $password)
   {
     return password_hash($password, PASSWORD_BCRYPT, ["cost" => 11]);
   }
@@ -22,29 +54,29 @@ class UserRepository
    * Creates a new user in the database and returns its id.
    * @param User $account The user to add
    */
-  public function create(User $user)
+  public function create(User $user): Response
   {
+    if ($this->emailExists($user->email)) {
+      return new Response(false, "This email is already in use.");
+    }
+
     $query = $this->db->prepare("INSERT INTO user(first_name, last_name, email, password) VALUES(?, ?, ?, ?);");
     $query->bindValue(1, $user->firstName);
     $query->bindValue(2, $user->lastName);
     $query->bindValue(3, $user->email);
-    $query->bindValue(4, $this->hash_password($user->password));
+    $query->bindValue(4, $this->hashPassword($user->password));
     $query->execute();
 
-    $query = $this->db->prepare("SELECT * FROM user WHERE email = ? AND password = ? LIMIT 1;");
-    $query->bindValue(1, $user->email);
-    $query->bindValue(2, $this->hash_password($user->password));
-    $query->execute();
-    $result = $query->fetch();
-
-    return $result['id'];
+    return new Response(true, "Created account successfully.");
   }
 
   /**
    * Reads from the database and returns a user if the id is set, all users otherwise.
    * @param int $id An optional id that retrieves the specific user instead of every user
+   * @return User | User[]
    */
-  public function read(int $id = null) {
+  public function read(int $id = null): User|array
+  {
     if ($id === null) {
       $query = $this->db->prepare('SELECT * FROM user;');
       $query->execute();
@@ -80,7 +112,7 @@ class UserRepository
     $query->bindValue(1, $user->firstName);
     $query->bindValue(2, $user->lastName);
     $query->bindValue(3, $user->email);
-    $query->bindValue(4, $this->hash_password($user->password));
+    $query->bindValue(4, $this->hashPassword($user->password));
     $query->bindValue(5, $id);
     $query->execute();
 
