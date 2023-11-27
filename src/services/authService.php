@@ -2,6 +2,7 @@
 
 class AuthService
 {
+  /** Starts a new session if it doesn't exist yet. */
   public static function new()
   {
     if (session_status() === PHP_SESSION_NONE) {
@@ -9,24 +10,36 @@ class AuthService
     }
   }
 
-  public static function setUserId(int $id)
-  {
-    $_SESSION["user_id"] = $id;
-  }
-
+  /** Destroys the current session. */
   public static function destroy()
   {
     $_SESSION["user_id"] = "";
     session_destroy();
   }
 
-  public static function isValid(): bool {
+  /** Checks that the session's user id is valid. */
+  public static function isValid(): bool
+  {
     AuthService::new();
 
-    if ($_SESSION["user_id"] === 0) {
+    if (AuthService::getUserId() === 0) {
       return false;
     }
 
     return true;
+  }
+
+  /** Gets the user id from the session. */
+  public static function getUserId(): int
+  {
+    AuthService::new();
+
+    return $_SESSION["user_id"];
+  }
+
+  /** Sets the user id in the session. */
+  public static function setUserId(int $id)
+  {
+    $_SESSION["user_id"] = $id;
   }
 }

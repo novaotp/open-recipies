@@ -3,8 +3,11 @@
 require_once($_SERVER["DOCUMENT_ROOT"] . '/src/repositories/userRepository.php');
 require_once($_SERVER["DOCUMENT_ROOT"] . '/src/services/authService.php');
 require_once($_SERVER["DOCUMENT_ROOT"] . '/src/services/middlewareService.php');
+require_once($_SERVER["DOCUMENT_ROOT"] . '/src/libs/hooks/useUser.php');
 
 Middleware::run();
+
+$user = useUser();
 
 ?>
 
@@ -16,6 +19,8 @@ Middleware::run();
   <title>Profile - OpenRecipy</title>
 </head>
 <body>
-  This is your profile !
+  <?php if ($user) : ?>
+    <h1>Hello <?= $user->firstName; ?></h1>
+  <?php endif; ?>
 </body>
 </html>

@@ -1,6 +1,6 @@
 <?php
 
-/** An object to manage responses efficiently. */
+/** An intrinsic object to manage responses efficiently. */
 class Response {
     public readonly bool $success;
     public readonly string $message;
