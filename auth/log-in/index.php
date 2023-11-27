@@ -16,9 +16,15 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $info = $response->message;
   } else {
     AuthService::setUserId($response->data);
-    header("Location: /app");
+    $from = $_GET['from'];
+    if ($from) {
+      header("Location: $from");
+    } else {
+      header("Location: /app");
+    }
   }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -31,6 +37,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 </head>
 
 <body>
+  <?php if (isset($_GET['authenticated']) && $_GET['authenticated'] === "false"): ?>
+    <p style="color: red;">Failed to automatically authenticate. Please log in again.</p>
+  <?php endif; ?>
   <?php if (isset($info)): ?>
     <p style="color: red;">
       <?= $info; ?>

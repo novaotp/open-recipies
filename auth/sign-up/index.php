@@ -1,7 +1,10 @@
 <?php
 
+require_once($_SERVER["DOCUMENT_ROOT"] . '/src/config/app.php');
+
 require_once($_SERVER["DOCUMENT_ROOT"] . '/src/repositories/userRepository.php');
 require_once($_SERVER["DOCUMENT_ROOT"] . '/src/services/authService.php');
+require_once($_SERVER["DOCUMENT_ROOT"] . '/src/models/template.php');
 
 AuthService::new();
 
@@ -27,6 +30,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign Up - OpenRecipies</title>
+  <?= Template::link("/src/resources/styles/globals.css"); ?>
+  <?= Template::link("/auth/sign-up/style.css"); ?>
 </head>
 
 <body>

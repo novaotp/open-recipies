@@ -15,9 +15,5 @@ Open Recipies is a website developed for an exam in PR_WEB.
 2. Launch the development server
 
   ```ps1
-  php -S localhost:3000 routes.php
+  php -S localhost:3000
   ```
-
-## Router
-
-For the router logic, see [PHPRouter](https://phprouter.com/).

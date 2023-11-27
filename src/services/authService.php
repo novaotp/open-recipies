@@ -19,4 +19,14 @@ class AuthService
     $_SESSION["user_id"] = "";
     session_destroy();
   }
+
+  public static function isValid(): bool {
+    AuthService::new();
+
+    if ($_SESSION["user_id"] === 0) {
+      return false;
+    }
+
+    return true;
+  }
 }
