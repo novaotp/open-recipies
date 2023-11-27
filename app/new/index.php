@@ -6,6 +6,6 @@
   <title>Document</title>
 </head>
 <body>
-  page not found
+  New recipy
 </body>
 </html>
