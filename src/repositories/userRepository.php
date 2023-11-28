@@ -11,7 +11,7 @@ class UserRepository
 
   public function __construct()
   {
-    $this->db = (new DatabaseService())::getInstance();
+    $this->db = DatabaseService::getInstance();
   }
 
   /**
@@ -19,7 +19,7 @@ class UserRepository
    * @param User $user The user whose credentials to check
    */
   public function checkCredentials(User $user): Response {
-    $query = $this->db->prepare('SELECT * FROM user WHERE email = ? LIMIT 1;');
+    $query = $this->db->prepare('SELECT * FROM openrecipiesdb.user WHERE email = ? LIMIT 1;');
     $query->bindValue(1, $user->email);
     $query->execute();
     $result = $query->fetch();
@@ -33,7 +33,7 @@ class UserRepository
 
   private function emailExists(string $email)
   {
-    $query = $this->db->prepare("SELECT * FROM user WHERE email = ?;");
+    $query = $this->db->prepare("SELECT * FROM openrecipiesdb.user WHERE email = ?;");
     $query->bindValue(1, $email);
     $query->execute();
     $result = $query->fetch();
@@ -60,7 +60,7 @@ class UserRepository
       return new Response(false, "This email is already in use.");
     }
 
-    $query = $this->db->prepare("INSERT INTO user(first_name, last_name, email, password) VALUES(?, ?, ?, ?);");
+    $query = $this->db->prepare("INSERT INTO openrecipiesdb.user(first_name, last_name, email, password) VALUES(?, ?, ?, ?);");
     $query->bindValue(1, $user->firstName);
     $query->bindValue(2, $user->lastName);
     $query->bindValue(3, $user->email);
@@ -78,7 +78,7 @@ class UserRepository
   public function read(int $id = null): User|array
   {
     if ($id === null) {
-      $query = $this->db->prepare('SELECT * FROM user;');
+      $query = $this->db->prepare('SELECT * FROM openrecipiesdb.user;');
       $query->execute();
       $result = $query->fetch();
 
@@ -91,7 +91,7 @@ class UserRepository
       return $users;
 
     } else {
-      $query = $this->db->prepare('SELECT * FROM user WHERE id = ? LIMIT 1;');
+      $query = $this->db->prepare('SELECT * FROM openrecipiesdb.user WHERE id = ? LIMIT 1;');
       $query->bindValue(1, $id);
       $query->execute();
       $result = $query->fetch();
@@ -108,7 +108,7 @@ class UserRepository
    */
   public function update(int $id, User $user)
   {
-    $query = $this->db->prepare("UPDATE user SET first_name = ?, last_name = ?, email = ?, password = ? WHERE id = ?;");
+    $query = $this->db->prepare("UPDATE openrecipiesdb.user SET first_name = ?, last_name = ?, email = ?, password = ? WHERE id = ?;");
     $query->bindValue(1, $user->firstName);
     $query->bindValue(2, $user->lastName);
     $query->bindValue(3, $user->email);
@@ -124,7 +124,7 @@ class UserRepository
    */
   public function delete(int $id)
   {
-    $query = $this->db->prepare("DELETE FROM account WHERE id = ?;");
+    $query = $this->db->prepare("DELETE FROM openrecipiesdb.user WHERE id = ?;");
     $query->bindValue(1, $id);
     $query->execute();
 

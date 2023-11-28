@@ -19,7 +19,7 @@ require_once($_SERVER["DOCUMENT_ROOT"] . '/src/models/template.php');
   </a>
 </nav>
 
-<menu id="nav-menu" class="absolute top-0 -left-full h-full w-full bg-red-600 duration-300 ease-out">
+<menu id="nav-menu" class="absolute top-0 -left-full h-full w-full bg-red-600 duration-300 ease-out z-10">
   <div class="h-20 p-5 flex justify-between items-center">
     <!-- XMark from Font Awesome -->
     <div id="nav-menu-close" class="h-8 w-8 cursor-pointer">
