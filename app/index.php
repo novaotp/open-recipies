@@ -29,7 +29,7 @@ if (isset($_GET['sort']) && !in_array($_GET['sort'], ['trending', 'top-rated']))
   <?php require_once($_SERVER['DOCUMENT_ROOT'].'/src/resources/components/navMenu.php') ?>
   <div class="absolute w-full h-1/2 bg-[url(/public/images/food.png)] bg-cover bg-center -z-10 shadow-[inset_0_-75px_50px_rgba(34,34,34,1)] blur-[2px] opacity-70"></div>
   <!-- Start | Add new recipy -->
-  <a href="/app/new" class="absolute right-5 bottom-5 w-12 aspect-square bg-orange-500 flex justify-center items-center rounded-xl">
+  <a href="/app/new" class="absolute right-5 bottom-5 w-12 aspect-square bg-orange-500 flex justify-center items-center rounded-xl z-10">
     <!-- Plus from Font Awesome -->
     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-white" viewBox="0 0 448 512">
       <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/>

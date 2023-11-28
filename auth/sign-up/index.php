@@ -31,10 +31,12 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign Up - OpenRecipies</title>
   <?= Template::link("/src/resources/styles/globals.css"); ?>
-  <?= Template::link("/auth/sign-up/style.css"); ?>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
+<body class="relative z-0">
+  <?php require_once($_SERVER['DOCUMENT_ROOT'].'/src/resources/components/loading.php') ?>
+  <div class="absolute w-full h-1/2 bg-[url(/public/images/food.png)] bg-cover bg-center -z-10 shadow-[inset_0_-75px_50px_rgba(34,34,34,1)] blur-[2px] opacity-70"></div>
   <?php if (isset($info)): ?>
     <p style="color: red;">
       <?= $info; ?>

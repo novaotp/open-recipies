@@ -13,6 +13,8 @@ class AuthService
   /** Destroys the current session. */
   public static function destroy()
   {
+    AuthService::new();
+    
     $_SESSION["user_id"] = "";
     session_destroy();
   }
@@ -33,6 +35,10 @@ class AuthService
   public static function getUserId(): int
   {
     AuthService::new();
+
+    if (!isset($_SESSION["user_id"])) {
+      return 0;
+    }
 
     return $_SESSION["user_id"];
   }

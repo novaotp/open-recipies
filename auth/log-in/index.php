@@ -16,11 +16,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $info = $response->message;
   } else {
     AuthService::setUserId($response->data);
-    $from = $_GET['from'];
-    if ($from) {
-      header("Location: $from");
+    if (isset($_GET['from'])) {
+      $from = $_GET['from'];
+      # header("Location: $from");
     } else {
-      header("Location: /app");
+      # header("Location: /app");
     }
   }
 }
@@ -34,9 +34,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Log In - OpenRecipies</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
+<body class="relative z-0">
+  <?php require_once($_SERVER['DOCUMENT_ROOT'].'/src/resources/components/loading.php') ?>
   <?php if (isset($_GET['authenticated']) && $_GET['authenticated'] === "false"): ?>
     <p style="color: red;">Failed to automatically authenticate. Please log in again.</p>
   <?php endif; ?>
