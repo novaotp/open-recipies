@@ -1,8 +1,8 @@
 <?php
 
 require_once($_SERVER["DOCUMENT_ROOT"] . '/src/models/user.php');
-require_once($_SERVER["DOCUMENT_ROOT"] . '/src/models/response.php');
-require_once($_SERVER["DOCUMENT_ROOT"] . '/src/services/databaseService.php');
+require_once($_SERVER["DOCUMENT_ROOT"] . '/src/utils/response.php');
+require_once($_SERVER["DOCUMENT_ROOT"] . '/src/services/database.php');
 
 /** A repository to manage CRUD operations on the user table. */
 class UserRepository
@@ -11,7 +11,7 @@ class UserRepository
 
   public function __construct()
   {
-    $this->db = DatabaseService::getInstance();
+    $this->db = Database::getInstance();
   }
 
   /**

@@ -1,3 +1,9 @@
+<?php
+
+require_once($_SERVER["DOCUMENT_ROOT"] . '/src/utils/tag.php');
+
+?>
+
 <div id="loading" class="absolute w-full h-full z-[999] flex justify-center items-center flex-col bg-white">
     <div role="status">
         <svg aria-hidden="true" class="w-14 aspect-square text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -8,10 +14,4 @@
     <span class="text-xl mt-5">Loading...</span>
 </div>
 
-<script type="text/javascript">
-    const loading = document.getElementById('loading');
-    window.onload = function() {
-        loading.classList.remove('flex');
-        loading.classList.add('hidden');
-    }
-</script>
+<?= Tag::script('/loading.js', true); ?>
