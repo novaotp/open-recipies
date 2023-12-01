@@ -18,7 +18,7 @@ Open Recipies is a website developed for an exam in PR_WEB.
   npm install
   ```
 
-4. Set the `.env` file to match real data
+3. Set the `.env` file to match real data
 
   ```ps1
   DB_HOST="<address>:<port>"
