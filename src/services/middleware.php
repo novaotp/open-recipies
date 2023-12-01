@@ -8,9 +8,20 @@ class Middleware
   {
     Auth::new();
 
+    $uri = $_SERVER['REQUEST_URI'];
+
+    $allowedPathnameStarts = ['/', '/auth', '/app'];
+
+    foreach ($allowedPathnameStarts as $path) {
+      if (!str_starts_with($uri, $path)) {
+        header("Location: /");
+        return;
+      }
+    }
+
     if (!Auth::isValid()) {
-      $from =  $_SERVER['REQUEST_URI'];
-      header("Location: /auth/log-in?authenticated=false&from=$from");
+      header("Location: /auth/log-in?authenticated=false&from=$uri");
+      return;
     }
   }
 }
