@@ -31,13 +31,19 @@ DB_USER="<user>"
 DB_PASSWORD="<password>"
 ```
 
-4. Launch the development server
+4. Compile the css in a terminal (watch mode enabled)
+
+```bash
+npm run css
+```
+
+5. Launch the development server in another terminal
 
 ```bash
 npm run dev
 ```
 
-5. Open http://127.0.0.1:3000 in your browser to see the app.
+6. Open http://127.0.0.1:3000 in your browser to see the app.
 
 ## Data sources
 
