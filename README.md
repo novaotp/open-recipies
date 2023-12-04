@@ -22,13 +22,22 @@ git clone https://github.com/novaotp/open-recipies
 npm install
 ```
 
-3. Launch the development server
+3. Set the `.env` file to match real data
+
+```bash
+DB_HOST="<address>:<port>"
+DB_NAME="openrecipiesdb"
+DB_USER="<user>"
+DB_PASSWORD="<password>"
+```
+
+4. Launch the development server
 
 ```bash
 npm run dev
 ```
 
-4. Open http://127.0.0.1:3000 in your browser to see the app.
+5. Open http://127.0.0.1:3000 in your browser to see the app.
 
 ## Data sources
 

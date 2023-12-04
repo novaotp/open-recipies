@@ -1,5 +1,8 @@
 <?php
 
+require_once($_SERVER["DOCUMENT_ROOT"] . '/src/services/auth.php');
+
+/** A model of a user object. */
 class User {
   public readonly string $firstName;
   public readonly string $lastName;
@@ -12,5 +15,20 @@ class User {
     $this->lastName = $lastName;
     $this->email = $email;
     $this->password = $password;
+  }
+
+  /**
+   * Gets the user from the session.
+   * @return User | null The user if found, otherwise `null`
+   */
+  public static function getFromSession(): User | null {
+    if (!Auth::isValid()) {
+      return null;
+    }
+  
+    $user_repo = new UserRepository();
+    $user = $user_repo->read(Auth::getUserId());
+  
+    return $user;
   }
 }

@@ -1,19 +1,20 @@
 <?php
 
-class AuthService
+/** An intrinsic object for auth-related methods. */
+class Auth
 {
   /** Starts a new session if it doesn't exist yet. */
-  public static function new()
+  public static function new(): void
   {
     if (session_status() === PHP_SESSION_NONE) {
       session_start();
     }
   }
 
-  /** Destroys the current session. */
-  public static function destroy()
+  /** Destroys the current session and removes every variable in it. */
+  public static function destroy(): void
   {
-    AuthService::new();
+    Auth::new();
     
     $_SESSION["user_id"] = "";
     session_destroy();
@@ -22,9 +23,9 @@ class AuthService
   /** Checks that the session's user id is valid. */
   public static function isValid(): bool
   {
-    AuthService::new();
+    Auth::new();
 
-    if (AuthService::getUserId() === 0) {
+    if (Auth::getUserId() === 0) {
       return false;
     }
 
@@ -34,7 +35,7 @@ class AuthService
   /** Gets the user id from the session. */
   public static function getUserId(): int
   {
-    AuthService::new();
+    Auth::new();
 
     if (!isset($_SESSION["user_id"])) {
       return 0;
