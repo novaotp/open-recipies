@@ -18,9 +18,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     AuthService::setUserId($response->data);
     if (isset($_GET['from'])) {
       $from = $_GET['from'];
-      # header("Location: $from");
+      header("Location: $from");
     } else {
-      # header("Location: /app");
+      header("Location: /app");
     }
   }
 }

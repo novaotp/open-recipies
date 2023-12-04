@@ -7,4 +7,9 @@ class Template {
         $link = WEBSITE_ROOT . $relativePath;
         return "<link rel=\"stylesheet\" type=\"text/css\" href=\"$link\" />";
     }
+
+    public static function script(string $relativePath) {
+        $src = WEBSITE_ROOT . $relativePath;
+        return "<script type=\"text/javascript\" src=\"$src\"></script>";
+    }
 }

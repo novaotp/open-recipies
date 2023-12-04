@@ -1,19 +1,39 @@
-# Open Recipies
+# OpenRecipies
 
-Open Recipies is a website developed for an exam in PR_WEB.
+OpenRecipies is a webapp to search for or create recipies.
 
-## Development
+Features :
 
-### Getting started
+- Create/modify/delete your own recipies
+- Favorite recipies
+- Discuss with people around the globe
 
-1. Clone the repository
+## Getting started
 
-  ```ps1
-  git clone https://github.com/novaotp/open-recipies
-  ```
+1. Clone the repo
 
-2. Launch the development server
+```bash
+git clone https://github.com/novaotp/open-recipies
+```
 
-  ```ps1
-  php -S localhost:3000
-  ```
+2. Install the dependencies
+
+```bash
+npm install
+```
+
+3. Launch the development server
+
+```bash
+npm run dev
+```
+
+4. Open http://127.0.0.1:3000 in your browser to see the app.
+
+## Data sources
+
+Ingredients : https://corgis-edu.github.io/corgis/csv/ingredients/
+
+## Author
+
+Sajidur Rahman

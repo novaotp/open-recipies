@@ -1,4 +1,5 @@
 <?php
+
 class User {
   public readonly string $firstName;
   public readonly string $lastName;
