@@ -5,7 +5,7 @@
   "main": "index.php",
   "scripts": {
     "dev": "php -S 127.0.0.1:3000",
-    "css": "npx tailwindcss -i ./src/resources/styles/globals.css -o ./src/resources/styles/globals.min.css --minify"
+    "css": "npx tailwindcss -i ./src/resources/styles/globals.css -o ./src/resources/styles/globals.min.css --watch --minify"
   },
   "keywords": [],
   "author": "Sajidur Rahman",
