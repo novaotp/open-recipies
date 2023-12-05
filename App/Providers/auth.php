@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Providers;
+
 /** An intrinsic object for auth-related methods. */
 class Auth
 {

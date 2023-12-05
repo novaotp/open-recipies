@@ -1,8 +1,12 @@
 <?php
 
-require_once($_SERVER["DOCUMENT_ROOT"] . '/src/models/user.php');
-require_once($_SERVER["DOCUMENT_ROOT"] . '/src/utils/response.php');
-require_once($_SERVER["DOCUMENT_ROOT"] . '/src/services/database.php');
+namespace App\Repositories;
+
+use PDO;
+
+use App\Models\User;
+use Utils\Response;
+use App\Providers\Database;
 
 /** A repository to manage CRUD operations on the user table. */
 class UserRepository

@@ -2,7 +2,8 @@
 
 namespace App\Models;
 
-require_once($_SERVER["DOCUMENT_ROOT"] . '/src/services/auth.php');
+use App\Providers\Auth;
+use App\Repositories\UserRepository;
 
 /** A model of a user object. */
 class User {

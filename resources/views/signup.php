@@ -1,11 +1,9 @@
 <?php
 
-require_once($_SERVER["DOCUMENT_ROOT"] . '/src/config/app.php');
-
-require_once($_SERVER["DOCUMENT_ROOT"] . '/src/repositories/userRepository.php');
-require_once($_SERVER["DOCUMENT_ROOT"] . '/src/services/auth.php');
-require_once($_SERVER["DOCUMENT_ROOT"] . '/src/utils/tag.php');
-require_once($_SERVER["DOCUMENT_ROOT"] . '/src/utils/unless.php');
+use App\Providers\Auth;
+use Utils\Tag;
+use App\Models\User;
+use App\Repositories\UserRepository;
 
 Auth::new();
 
@@ -31,7 +29,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign Up - OpenRecipies</title>
-  <?= Tag::link("/globals.min.css"); ?>
+  <link type="text/css" rel="stylesheet" href="/open-recipies/resources/styles/globals.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,700;0,900;1,400&display=swap">
 </head>
 
 <body class="relative z-0">
@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     </form>
     <p class="relative mt-5 text-white text-[14px]">
       <span>Already have an account ?</span>
-      <a class="text-blue-600 underline" href="/auth/log-in">Log In</a>
+      <a class="text-blue-600 underline" href="<?= URL_SUBFOLDER . '/auth/log-in'; ?>">Log In</a>
   </div>
 </body>
 

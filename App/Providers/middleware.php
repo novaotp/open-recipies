@@ -1,6 +1,6 @@
 <?php
 
-require_once($_SERVER["DOCUMENT_ROOT"] . '/src/services/auth.php');
+namespace App\Providers;
 
 class Middleware
 {

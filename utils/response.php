@@ -1,5 +1,7 @@
 <?php
 
+namespace Utils;
+
 /** An intrinsic object to manage responses efficiently. */
 class Response {
     public readonly bool $success;
