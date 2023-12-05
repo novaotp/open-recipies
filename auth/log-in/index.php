@@ -19,6 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
   } else {
     Auth::setUserId($response->data);
     if (isset($_GET['from'])) {
+      $from = $_GET['from'];
       header("Location: $from");
     } else {
       header("Location: /app");
