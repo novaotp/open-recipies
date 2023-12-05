@@ -1,16 +1,10 @@
-<?php
-
-require_once($_SERVER["DOCUMENT_ROOT"] . '/src/utils/tag.php');
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home</title>
-  <?= Tag::link("/globals.min.css"); ?>
+  <link type="text/css" href="../styles/globals.min.css" />
 </head>
 <body class="relative z-0 p-10 flex flex-col justify-center">
   <h1 class="relative font-bold text-white text-5xl">Open Recipies</h1>

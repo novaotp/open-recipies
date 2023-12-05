@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Models;
+
 require_once($_SERVER["DOCUMENT_ROOT"] . '/src/services/auth.php');
 
 /** A model of a user object. */

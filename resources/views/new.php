@@ -1,7 +1,7 @@
 <?php
 
 require_once($_SERVER["DOCUMENT_ROOT"] . '/src/services/middlewareService.php');
-require_once($_SERVER["DOCUMENT_ROOT"] . '/src/models/template.php');
+require_once($_SERVER["DOCUMENT_ROOT"] . '/src/utils/tag.php');
 require_once($_SERVER["DOCUMENT_ROOT"] . '/src/repositories/ingredientRepository.php');
 
 Middleware::run();
@@ -14,8 +14,7 @@ Middleware::run();
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>New Recipy</title>
-  <?= Template::link("/src/resources/styles/globals.min.css"); ?>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <?= Tag::link("/globals.min.css"); ?>
 </head>
 <body class="relative z-0">
   <?php require_once($_SERVER['DOCUMENT_ROOT'].'/src/resources/components/loading.php') ?>
