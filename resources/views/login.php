@@ -1,34 +1,3 @@
-<?php
-
-require_once($_SERVER["DOCUMENT_ROOT"] . '/src/repositories/userRepository.php');
-require_once($_SERVER["DOCUMENT_ROOT"] . '/src/services/auth.php');
-require_once($_SERVER["DOCUMENT_ROOT"] . '/src/utils/tag.php');
-require_once($_SERVER["DOCUMENT_ROOT"] . '/src/utils/unless.php');
-
-Auth::new();
-
-if ($_SERVER['REQUEST_METHOD'] == "POST") {
-  $user = new User("", "", $_POST["email"], $_POST["password"]);
-
-  $user_repo = new UserRepository();
-
-  $response = $user_repo->checkCredentials($user);
-
-  if (!$response->success) {
-    $info = $response->message;
-  } else {
-    Auth::setUserId($response->data);
-    if (isset($_GET['from'])) {
-      $from = $_GET['from'];
-      header("Location: $from");
-    } else {
-      header("Location: /app");
-    }
-  }
-}
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,24 +5,48 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Log In - OpenRecipies</title>
-  <?= Tag::link("/globals.min.css"); ?>
+  <link type="text/css" rel="stylesheet" href="<?= URL_SUBFOLDER; ?>/resources/styles/globals.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,700;0,900;1,400&display=swap">
 </head>
 
 <body class="relative z-0">
-  <?= Tag::component('/loading.php'); ?>
-  <?= unless(
-        isset($_GET['authenticated']) && $_GET['authenticated'] === "false",
-        "<p style=\"color: red;\">Failed to automatically authenticate. Please log in again.</p>",
-        null
-      );
-  ?>
-  <?= unless(isset($info), "<p style=\"color: red;\"><?= $info; ?></p>", null); ?>
-  <form action="/auth/log-in" method="POST">
-    <input type="email" name="email" value="<?= unless(isset($info), $user->email, ""); ?>" placeholder="Enter your email here..." />
-    <input type="password" name="password" placeholder="Enter your password here..." />
-    <button type="submit">Log In</button>
-  </form>
-  <p>Don't have an account yet ? <a href="/auth/sign-up">Create one now</a>
+  <loading-screen></loading-screen>
+  <?php if (isset($error)): ?>
+    <toast-notification message="<?= $error; ?>" type="error"></toast-notification>
+  <?php endif; ?>
+  <div class="absolute w-full h-2/3 bg-[url(<?= URL_SUBFOLDER; ?>/public/images/food.png)] bg-cover bg-center -z-10 shadow-[inset_0_-75px_50px_rgba(34,34,34,1)] blur-[2px] opacity-70"></div>
+  <div class="relative w-full h-full p-10 flex flex-col justify-center items-center">
+    <h1 class="relative text-5xl text-white font-bold mb-10">Log In</h1>
+    <form action="<?= URL_SUBFOLDER; ?>/auth/log-in" method="POST" class="relative w-full flex flex-col items-center">
+      <div class="relative w-full h-[60px] mb-5">
+        <label htmlFor="email" class="absolute -top-2 left-4 z-10 rounded-xl bg-black text-white text-xs px-2">Email</label>
+        <input
+          class="relative w-full h-[60px] px-5 rounded-xl"
+          type="email"
+          name="email"
+          value="<?= $user->email(); ?>"
+          placeholder="Enter your email here..."
+        />
+      </div>
+      <div class="relative w-full h-[60px] mb-5">
+        <label htmlFor="password" class="absolute -top-2 left-4 z-10 rounded-xl bg-black text-white text-xs px-2">Password</label>
+        <input
+          class="relative w-full h-[60px] px-5 rounded-xl"
+          type="password"
+          name="password"
+          placeholder="Enter your password here..."
+        />
+      </div>
+      <button class="relative px-5 py-3 flex justify-center items-center bg-orange-500 text-white rounded-xl text-[14px]" type="submit">Create account</button>
+    </form>
+    <p class="relative mt-5 text-white text-[14px]">
+      <span>Not registered yet ?</span>
+      <a class="text-blue-600 underline" href="<?= URL_SUBFOLDER . '/auth/sign-up'; ?>">Register now</a>
+    </p>
+  </div>
+  <script type="module" src="<?= URL_SUBFOLDER; ?>/resources/js/loading.js"></script>
+  <script type="module" src="<?= URL_SUBFOLDER; ?>/resources/js/toast.js"></script>
 </body>
 
 </html>

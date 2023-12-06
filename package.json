@@ -5,7 +5,8 @@
   "main": "index.php",
   "scripts": {
     "dev": "php -S 127.0.0.1:3000",
-    "css": "npx tailwindcss -i ./resources/styles/globals.css -o ./resources/styles/globals.min.css --watch --minify"
+    "css": "npx tailwindcss -i ./resources/styles/globals.css -o ./resources/styles/globals.min.css --watch --minify",
+    "autoload": "composer dump-autoload"
   },
   "keywords": [],
   "author": "Sajidur Rahman",

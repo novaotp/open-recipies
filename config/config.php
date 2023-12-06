@@ -10,7 +10,7 @@ define('URL_SUBFOLDER', '/open-recipies');
 //DB Params
 define('DB_HOST', 'localhost:3306');
 define('DB_USER', 'root');
-define('DB_PASS', 'password');
+define('DB_PASS', 'Pa$$w0rd');
 define('DB_NAME', 'openrecipiesdb');
 
 function unless(bool $condition, mixed $onSuccess, mixed $onFail): mixed

@@ -2,12 +2,13 @@
 
 namespace App\Controllers;
 
-use App\Providers\Database;
 use App\Models\User;
+use App\Providers\Auth;
+use App\Providers\Database;
 
-class SignUpController
+class LogInController
 {
-    /** The main action */
+	/** The main action */
 	public function index()
 	{
 		if ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -19,30 +20,31 @@ class SignUpController
 		}
 	}
 
+    /** The get action */
 	public function get(User $defaultUser = null)
 	{
 		$user = $defaultUser !== null ? $defaultUser : new User();
-		require_once APP_ROOT . '/resources/views/signup.php';
+        require_once APP_ROOT . '/resources/views/login.php';
 	}
 
+	/** The post action */
 	public function post()
 	{
 		$db = Database::getInstance();
-		$user = new User($_POST['firstName'], $_POST['lastName'], $_POST['email'], $_POST['password']);
+		$user = new User("", "", $_POST["email"], $_POST["password"]);
 
-		$query = $db->prepare("SELECT * FROM openrecipiesdb.user WHERE email = ?;");
+		$query = $db->prepare('SELECT * FROM openrecipiesdb.user WHERE email = ? LIMIT 1;');
 		$query->bindValue(1, $user->email());
 		$query->execute();
 		$result = $query->fetch();
 
-		if ($result && $result['email'] == $user->email()) {
-			$error = "Email already in use";
-			$user->password("");
-			$this->get($user);
-		} else {
-			$user->create();
-			$url = URL_SUBFOLDER . '/auth/log-in';
+		if ($result && password_verify($user->password(), $result['password'])) {
+			Auth::setUserId($result['id']);
+			$url = URL_SUBFOLDER . '/app';
 			header("Location: $url");
+		} else {
+			$error = "Invalid credentials.";
+			$this->get($user);
 		}
 	}
 }
