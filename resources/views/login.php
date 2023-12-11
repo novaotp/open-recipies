@@ -38,7 +38,7 @@
           placeholder="Enter your password here..."
         />
       </div>
-      <button class="relative px-5 py-3 flex justify-center items-center bg-orange-500 text-white rounded-xl text-[14px]" type="submit">Create account</button>
+      <button class="relative px-5 py-3 flex justify-center items-center bg-orange-500 text-white rounded-xl text-[14px]" type="submit">Log In</button>
     </form>
     <p class="relative mt-5 text-white text-[14px]">
       <span>Not registered yet ?</span>

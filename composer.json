@@ -3,11 +3,11 @@
     "description": "Open Recipies is a website developed for an exam in PR_WEB.",
     "autoload": {
         "psr-4": {
-            "App\\": "app/",
+            "App\\": "application/",
             "Utils\\": "utils/"
         },
         "classmap": [
-            "app/",
+            "application/",
             "utils/"
         ]
     },

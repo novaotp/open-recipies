@@ -49,6 +49,7 @@ class Auth
   /** Sets the user id in the session. */
   public static function setUserId(int $id)
   {
+    Auth::new();
     $_SESSION["user_id"] = $id;
   }
 }

@@ -1,18 +1,6 @@
 <?php
 
-require_once($_SERVER["DOCUMENT_ROOT"] . '/src/repositories/userRepository.php');
-require_once($_SERVER["DOCUMENT_ROOT"] . '/src/services/auth.php');
-require_once($_SERVER["DOCUMENT_ROOT"] . '/src/services/middleware.php');
-require_once($_SERVER["DOCUMENT_ROOT"] . '/src/utils/tag.php');
-require_once($_SERVER["DOCUMENT_ROOT"] . '/src/utils/queryParam.php');
-require_once($_SERVER["DOCUMENT_ROOT"] . '/src/utils/unless.php');
-
-Middleware::run();
-
-if (isset($_GET['sort']) && !in_array($_GET['sort'], ['trending', 'top-rated'])) {
-  $url = QueryParam::remove($_SERVER['REQUEST_URI'], 'sort');
-  header("Location: $url");
-}
+use Utils\QueryParam;
 
 ?>
 
@@ -22,11 +10,13 @@ if (isset($_GET['sort']) && !in_array($_GET['sort'], ['trending', 'top-rated']))
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>App</title>
-  <?= Tag::link("/globals.min.css"); ?>
+  <link type="text/css" rel="stylesheet" href="<?= URL_SUBFOLDER; ?>/resources/styles/globals.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,700;0,900;1,400&display=swap">
 </head>
 <body class="relative z-0">
-  <?php Tag::component('/loading.php') ?>
-  <?php Tag::component('/navMenu.php') ?>
+  <loading-screen></loading-screen>
+  <nav-menu></nav-menu>
   <div class="absolute w-full h-1/2 bg-[url(/public/images/food.png)] bg-cover bg-center -z-10 shadow-[inset_0_-75px_50px_rgba(34,34,34,1)] blur-[2px] opacity-70"></div>
   <!-- Start | Add new recipy -->
   <a href="/app/new" class="absolute right-5 bottom-5 w-12 aspect-square bg-orange-500 flex justify-center items-center rounded-xl z-10">
@@ -41,7 +31,7 @@ if (isset($_GET['sort']) && !in_array($_GET['sort'], ['trending', 'top-rated']))
     <h1 class="text-4xl font-bold text-white mt-5">OpenRecipies</h1>
     <!-- Start | Search Input -->
     <div class="relative w-full h-12 rounded-md bg-white mt-10 flex">
-      <input class="relative flex-grow h-full rounded-l-md px-3" id="search-value" type="text" value="<?= unless(isset($_GET['search']), $_GET['search'], ""); ?>" placeholder="Search a recipy..." />
+      <input class="relative flex-grow h-full rounded-l-md px-3" id="search-value" type="text" value="<?= $search; ?>" placeholder="Search a recipy..." />
       <button class="relative h-full aspect-square flex justify-center items-center" id="search">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 aspect-square" viewBox="0 0 512 512">
           <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/>
@@ -92,6 +82,8 @@ if (isset($_GET['sort']) && !in_array($_GET['sort'], ['trending', 'top-rated']))
     <!-- End | Sort + Filter -->
   </main>
   <!-- End | Main Content -->
-  <?= Tag::script('/app.js', true); ?>
+  <script type="module" src="<?= URL_SUBFOLDER; ?>/resources/js/loading.js"></script>
+  <script type="module" src="<?= URL_SUBFOLDER; ?>/resources/js/navMenu.js"></script>
+  <script type="module" src="<?= URL_SUBFOLDER; ?>/resources/js/app.js"></script>
 </body>
 </html>

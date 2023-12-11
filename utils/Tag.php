@@ -30,15 +30,4 @@ class Tag
     $module = $asModule ? "type=\"module\"" : "nomodule";
     return "<script type=\"text/javascript\" $module src=\"$link\"></script>";
   }
-
-  /**
-   * Generates a PHP require tag.
-   * @param string $pathFromComponentDir The relative path of the file from the `/src/resources/components` directory
-   * @return string A require tag
-   */
-  public static function component(string $pathFromComponents)
-  {
-    $path = '/open-recipies/resources/components' . $pathFromComponents;
-    return "<?= require_once($path); ?>";
-  }
 }
