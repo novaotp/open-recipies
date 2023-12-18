@@ -8,7 +8,7 @@ use Symfony\Component\Routing\RouteCollection;
 
 class SignUpController
 {
-	/** The main action */
+	/** Send to the correct function depending on the method. */
 	public function index(RouteCollection $routes)
 	{
 		if ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -20,12 +20,14 @@ class SignUpController
 		}
 	}
 
+	/** Shows the signup form. */
 	public function get(RouteCollection $routes)
 	{
 		$user = new User();
 		require_once APP_ROOT . '/resources/views/signup.php';
 	}
 
+	/** Checks that the email isn't used yet, then creates a new user and sends him to the login page. */
 	public function post(RouteCollection $routes)
 	{
 		$db = Database::getInstance();

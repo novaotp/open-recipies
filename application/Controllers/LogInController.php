@@ -9,7 +9,7 @@ use Symfony\Component\Routing\RouteCollection;
 
 class LogInController
 {
-	/** The main action */
+	/** Send to the correct function depending on the method. */
 	public function index(RouteCollection $routes)
 	{
 		if ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -21,14 +21,14 @@ class LogInController
 		}
 	}
 
-    /** The get action */
+    /** Shows the login form. */
 	public function get(RouteCollection $routes)
 	{
 		$user = new User();
         require_once APP_ROOT . '/resources/views/login.php';
 	}
 
-	/** The post action */
+	/** Validates the credentials and authenticates the user. */
 	public function post(RouteCollection $routes)
 	{
 		$db = Database::getInstance();

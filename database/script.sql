@@ -10,7 +10,16 @@ CREATE TABLE openrecipiesdb.user (
   password VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE openrecipiesdb.recipy (
+CREATE TABLE openrecipiesdb.meal (
+  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(80) NOT NULL,
+  instructions TEXT NOT NULL,
+  thumbnail_url VARCHAR(255),
+  -- Text for now. Later, include a many-to-many relationship with the ingredients.
+  ingredients TEXT NOT NULL
+);
+
+/* CREATE TABLE openrecipiesdb.recipy (
   id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   author_id INTEGER NOT NULL,
   name VARCHAR(80) NOT NULL,
@@ -30,4 +39,4 @@ CREATE TABLE openrecipiesdb.recipy_ingredient (
   ingredient_id INTEGER NOT NULL,
   CONSTRAINT fk_recipy_ingredient_recipy FOREIGN KEY (recipy_id) REFERENCES openrecipiesdb.recipy (id),
   CONSTRAINT fk_recipy_ingredient_ingredient FOREIGN KEY (ingredient_id) REFERENCES openrecipiesdb.ingredient (id)
-);
+); */

@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Models\User;
-use App\Providers\Database;
 use App\Providers\Middleware;
 use App\Providers\Session;
 use Exception;
@@ -11,6 +10,7 @@ use Symfony\Component\Routing\RouteCollection;
 
 class SettingsController
 {
+    /** Send to the correct function depending on the method. */
 	public function index(RouteCollection $routes)
 	{
         Middleware::run();
@@ -26,27 +26,21 @@ class SettingsController
 		}
 	}
 
+    /** Shows the form for editing the user's account. */
     public function get(RouteCollection $routes)
     {
         $user = User::getFromSession();
 		require_once APP_ROOT . '/resources/views/settings.php';
     }
 
+    /** Updates the user's account with the given data. */
     public function put(RouteCollection $routes)
     {
         $userId = Session::getUserId();
 
         try {
-            $db = Database::getInstance();
             $user = new User($_POST['firstName'], $_POST['lastName'], $_POST['email'], $_POST['password']);
-
-            $query = $db->prepare("UPDATE openrecipiesdb.user SET first_name = ?, last_name = ?, email = ?, password = ? WHERE id = ?;");
-            $query->bindValue(1, $user->firstName());
-            $query->bindValue(2, $user->lastName());
-            $query->bindValue(3, $user->email());
-            $query->bindValue(4, $user->password());
-            $query->bindValue(5, $userId);
-            $query->execute();
+            $user->update($userId);
 
         } catch (Exception $e) {
             $error = "Update failed";
@@ -56,16 +50,13 @@ class SettingsController
         }
     }
 
+    /** Deletes the user's account using his session and redirecting him to the logout page. */
     public function delete(RouteCollection $routes)
     {
         $userId = Session::getUserId();
 
         try {
-            $db = Database::getInstance();
-
-            $query = $db->prepare("DELETE FROM openrecipiesdb.user WHERE id = ?;");
-            $query->bindValue(1, $userId);
-            $query->execute();
+            User::delete($userId);
 
             $url = $routes->get('log-out')->getPath();
             header("Location: $url");

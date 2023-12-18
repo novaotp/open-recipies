@@ -1,0 +1,86 @@
+[
+    {
+        "name": "Teriyaki Chicken Casserole",
+        "category": "Chicken",
+        "instructions": "Preheat oven to 350° F. Spray a 9x13-inch baking pan with non-stick spray. Combine soy sauce, 1/2 cup water, brown sugar, ginger and garlic in a small saucepan and cover. Bring to a boil over medium heat. Remove lid and cook for one minute once boiling. Meanwhile, stir together the corn starch and 2 tablespoons of water in a separate dish until smooth. Once sauce is boiling, add mixture to the saucepan and stir to combine. Cook until the sauce starts to thicken then remove from heat. Place the chicken breasts in the prepared pan. Pour one cup of the sauce over top of chicken. Place chicken in oven and bake 35 minutes or until cooked through. Remove from oven and shred chicken in the dish using two forks. *Meanwhile, steam or cook the vegetables according to package directions. Add the cooked vegetables and rice to the casserole dish with the chicken. Add most of the remaining sauce, reserving a bit to drizzle over the top when serving. Gently toss everything together in the casserole dish until combined. Return to oven and cook 15 minutes. Remove from oven and let stand 5 minutes before serving. Drizzle each serving with remaining sauce. Enjoy!",
+        "thumbnail_url": "https://www.themealdb.com/images/media/meals/wvpsxx1468256321.jpg",
+        "ingredients": {
+            "soy sauce": "3/4 cup",
+            "water": "1/2 cup",
+            "brown sugar": "1/4 cup",
+            "ground ginger": "1/2 teaspoon",
+            "minced garlic": "1/2 teaspoon",
+            "cornstarch": "4 tablespoons",
+            "chicken breasts": "2",
+            "stir-fry vegetables": "1 (12 oz.)",
+            "brown rice": "3 cups"
+        }
+    },
+    {
+        "name": "Spicy Arrabiata Penne",
+        "category": "Vegetarian",
+        "instructions": "Bring a large pot of water to a boil. Add kosher salt to the boiling water, then add the pasta. Cook according to the package instructions, about 9 minutes. In a large skillet over medium-high heat, add the olive oil and heat until the oil starts to shimmer. Add the garlic and cook, stirring, until fragrant, 1 to 2 minutes. Add the chopped tomatoes, red chile flakes, Italian seasoning and salt and pepper to taste. Bring to a boil and cook for 5 minutes. Remove from the heat and add the chopped basil. Drain the pasta and add it to the sauce. Garnish with Parmigiano-Reggiano flakes and more basil and serve warm.",
+        "thumbnail_url": "https://www.themealdb.com/images/media/meals/ustsqw1468250014.jpg",
+        "ingredients": {
+            "penne rigate": "1 pound",
+            "olive oil": "1/4 cup",
+            "garlic": "3 cloves",
+            "chopped tomatoes": "1 tin",
+            "red chile flakes": "1/2 teaspoon",
+            "italian seasoning": "1/2 teaspoon",
+            "basil": "6 leaves",
+            "Parmigiano-Reggiano": "spinkling"
+        }
+    },
+    {
+        "name": "Fish Soup (Ukha)",
+        "category": "Seafood",
+        "instructions": "In a medium pot, heat the olive oil over medium-high heat. Add the onions and cook, stirring occasionally until the onions start to caramelize. Add the carrots and cook until the carrots start to soften, about 4 more minutes. Add the stock, water, potatoes, bay leaves, and black peppercorns. Season with salt and bring to a boil. Reduce heat, cover and cook for 10 minutes. Add the millet and cook for 15 more minutes until millet and potatoes are cooked. Gently add the fish cubes. Stir and bring the soup to a simmer. The fish will cook through very fast, so make sure to not overcook them. They are done when the flesh is opaque and flakes easily. Garnish the soup with chopped fresh dill or parsley before serving.",
+        "thumbnail_url": "https://www.themealdb.com/images/media/meals/7n8su21699013057.jpg",
+        "ingredients": {
+            "Olive Oil": "2 tbs",
+            "Onion": "1 sliced",
+            "Carrots": "2 medium",
+            "Fish Stock": "3 cups",
+            "Water": "3 cups",
+            "Potatoes": "4 large",
+            "Bay Leaf": "3",
+            "Cod": "1",
+            "Salmon": "1"
+        }
+    },
+    {
+        "name": "Chakchouka",
+        "category": "Miscellaneous",
+        "instructions": "In a large cast iron skillet or sauté pan with a lid, heat oil over medium high heat. Add the onion and sauté for 2-3 minutes, until softened. Add the peppers and garlic, and sauté for an additional 3-5 minutes. Add the tomatoes, cumin, paprika, salt, and chili powder. Mix well and bring the mixture to a simmer. Reduce the heat to medium low and continue to simmer, uncovered, 10-15 minutes until the mixture has thickened to your desired consistency. (Taste the sauce at this point and adjust for salt and spice, as desired.) Using the back of a spoon, make four craters in the mixture, large enough to hold an egg. Crack one egg into each of the craters. Cover the skillet and simmer for 5-7 minutes, until the eggs have set. Serve immediately with crusty bread or pita.",
+        "thumbnail_url": "https://www.themealdb.com/images/media/meals/gpz67p1560458984.jpg",
+        "ingredients": {
+            "Tomatoes": "4",
+            "Olive Oil": "2 tbs",
+            "Onion": "1 Diced",
+            "Red Pepper": "1 sliced",
+            "Green Pepper": "1 sliced",
+            "Garlic": "3 Cloves Crushed",
+            "Cumin": "1 tsp",
+            "Paprika": "1 tsp",
+            "Salt": "3/4 teaspoon",
+            "Chili Powder": "1/2 teaspoon",
+            "Eggs": "4"
+        }
+    },
+    {
+        "name": "Blini Pancakes",
+        "category": "Side",
+        "instructions": "In a large bowl, whisk together 1/2 cup buckwheat flour, 2/3 cup all-purpose flour, 1/2 teaspoon salt, and 1 teaspoon yeast. Make a well in the center and pour in 1 cup warm milk, whisking until the batter is smooth. Cover the bowl and let the batter rise until doubled, about 1 hour. Enrich and Rest the Batter Stir 2 tablespoons melted butter and 1 egg yolk into the batter. In a separate bowl, whisk 1 egg white until stiff, but not dry. Fold the whisked egg white into the batter. Cover the bowl and let the batter stand 20 minutes. Pan-Fry the Blini Heat butter in a large nonstick skillet over medium heat. Drop quarter-sized dollops of batter into the pan, being careful not to overcrowd the pan. Cook for about 1 minute or until bubbles form. Turn and cook for about 30 additional seconds. Remove the finished blini onto a plate and cover them with a clean kitchen towel to keep warm. Add more butter to the pan and repeat the frying process with the remaining batter.",
+        "thumbnail_url": "https://www.themealdb.com/images/media/meals/0206h11699013358.jpg",
+        "ingredients": {
+            "Buckwheat": "1/2 cup",
+            "Flour": "2/3 Cup",
+            "Salt": "1/2 tsp",
+            "Yeast": "1 tsp",
+            "Milk": "1 cup",
+            "Butter": "2 tbs",
+            "Egg": "1 Separated"
+        }
+    }
+]

@@ -19,7 +19,8 @@ $routes->add('log-out', new Route(url('/auth/log-out'), array('controller' => 'L
 $routes->add('dashboard', new Route(url('/dashboard'), array('controller' => 'DashboardController', 'method' => 'index'), array()));
 
 $routes->add('recipies', new Route(url('/recipies'), array('controller' => 'RecipiesController', 'method' => 'index'), array()));
+$routes->add('new-recipy', new Route(url('/recipies/create'), array('controller' => 'RecipiesController', 'method' => 'create'), array()));
+$routes->add('recipy', new Route(url('/recipies/{id}'), array('controller' => 'RecipiesController', 'method'=>'show'), array('id' => '[0-9]+')));
 
 $routes->add('settings', new Route(url('/settings'), array('controller' => 'SettingsController', 'method' => 'index'), array()));
 
-$routes->add('product', new Route(url('/product/{id}'), array('controller' => 'ProductController', 'method'=>'showAction'), array('id' => '[0-9]+')));

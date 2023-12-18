@@ -554,3 +554,7 @@ html, body {
   background-color: #222222;
   font-family: 'Poppins', sans-serif;
 }
+
+input {
+  font-size: 14px;
+}

@@ -15,11 +15,11 @@ class Router
     public function __invoke(RouteCollection $routes)
     {
         $context = new RequestContext();
-        $request = Request::createFromGlobals();
         $context->fromRequest(Request::createFromGlobals());
 
         // Routing can match routes with incoming requests
         $matcher = new UrlMatcher($routes, $context);
+
         try {
             $arrayUri = explode('?', $_SERVER['REQUEST_URI']);
             $matcher = $matcher->match($arrayUri[0]);
@@ -33,8 +33,6 @@ class Router
                 }
             });
     
-            // https://github.com/gmaccario/simple-mvc-php-framework/issues/2
-            // Issue #2: Fix Non-static method ... should not be called statically
             $className = '\\App\\Controllers\\' . $matcher['controller'];
             $classInstance = new $className();
     

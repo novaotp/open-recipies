@@ -9,6 +9,7 @@ use App\Providers\Middleware;
 
 class DashboardController
 {
+	/** Shows the favorites recipies to the user. */
 	public function index(RouteCollection $routes)
 	{
 		Middleware::run();
