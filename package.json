@@ -10,7 +10,7 @@
   },
   "keywords": [],
   "author": "Sajidur Rahman",
-  "license": "ISC",
+  "license": "MIT License",
   "devDependencies": {
     "tailwindcss": "^3.3.5"
   }
