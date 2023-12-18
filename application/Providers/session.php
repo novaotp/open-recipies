@@ -2,8 +2,8 @@
 
 namespace App\Providers;
 
-/** An intrinsic object for auth-related methods. */
-class Auth
+/** An intrinsic object for session-related methods. */
+class Session
 {
   /** Starts a new session if it doesn't exist yet. */
   public static function new(): void
@@ -16,7 +16,7 @@ class Auth
   /** Destroys the current session and removes every variable in it. */
   public static function destroy(): void
   {
-    Auth::new();
+    Session::new();
     
     $_SESSION["user_id"] = "";
     session_destroy();
@@ -25,9 +25,9 @@ class Auth
   /** Checks that the session's user id is valid. */
   public static function isValid(): bool
   {
-    Auth::new();
+    Session::new();
 
-    if (Auth::getUserId() === 0) {
+    if (Session::getUserId() === 0) {
       return false;
     }
 
@@ -37,7 +37,7 @@ class Auth
   /** Gets the user id from the session. */
   public static function getUserId(): int
   {
-    Auth::new();
+    Session::new();
 
     if (!isset($_SESSION["user_id"])) {
       return 0;
@@ -49,7 +49,7 @@ class Auth
   /** Sets the user id in the session. */
   public static function setUserId(int $id)
   {
-    Auth::new();
+    Session::new();
     $_SESSION["user_id"] = $id;
   }
 }

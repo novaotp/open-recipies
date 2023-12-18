@@ -2,10 +2,16 @@
 
 namespace App\Controllers;
 
-class HomeController extends BaseController
+use Symfony\Component\Routing\RouteCollection;
+
+class HomeController
 {
-	public function index()
+	/**
+	 * Redirect to `/recipies` for a nice prefix.
+	 */
+	public function index(RouteCollection $routes)
 	{
-		require_once APP_ROOT . '/resources/views/home.php';
+		$url = $routes->get("recipies")->getPath();
+		header("Location: $url");
 	}
 }

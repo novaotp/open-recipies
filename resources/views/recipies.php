@@ -9,30 +9,22 @@ use Utils\QueryParam;
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>App</title>
-  <link type="text/css" rel="stylesheet" href="<?= URL_SUBFOLDER; ?>/resources/styles/globals.min.css" />
+  <title>Recipies | Coo-King</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <link type="text/css" rel="stylesheet" href="/resources/styles/globals.min.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,700;0,900;1,400&display=swap">
 </head>
 <body class="relative z-0">
-  <loading-screen></loading-screen>
-  <nav-menu></nav-menu>
-  <div class="absolute w-full h-1/2 bg-[url(/public/images/food.png)] bg-cover bg-center -z-10 shadow-[inset_0_-75px_50px_rgba(34,34,34,1)] blur-[2px] opacity-70"></div>
-  <!-- Start | Add new recipy -->
-  <a href="/app/new" class="absolute right-5 bottom-5 w-12 aspect-square bg-orange-500 flex justify-center items-center rounded-xl z-10">
-    <!-- Plus from Font Awesome -->
-    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-white" viewBox="0 0 448 512">
-      <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/>
-    </svg>
-  </a>
-  <!-- End | Add new recipy -->
+  <?php require_once APP_ROOT . '/resources/php/loading.php'; ?>
+  <?php require_once APP_ROOT . '/resources/php/navMenu.php'; ?>
+  <div class="absolute w-full h-1/2 bg-[url(/public/images/food.png)] bg-cover bg-center -z-10 shadow-[inset_0_-125px_50px_-50px_rgba(34,34,34,1)] blur-[2px] opacity-70"></div>
   <!-- Start | Main Content -->
   <main class="relative w-full h-[calc(100%-5rem)] flex flex-col top-20 px-5 pb-5">
-    <h1 class="text-4xl font-bold text-white mt-5">OpenRecipies</h1>
+    <h1 class="text-4xl font-bold text-white mt-5">Coo-King</h1>
     <!-- Start | Search Input -->
-    <div class="relative w-full h-12 rounded-md bg-white mt-10 flex">
-      <input class="relative flex-grow h-full rounded-l-md px-3" id="search-value" type="text" value="<?= $search; ?>" placeholder="Search a recipy..." />
-      <button class="relative h-full aspect-square flex justify-center items-center" id="search">
+    <div class="relative w-full h-[50px] rounded-md bg-white mt-10 flex justify-center items-center">
+      <input class="relative w-[calc(100%-50px)] h-full rounded-l-md px-3" id="search-value" type="text" value="<?= $search; ?>" placeholder="Search a recipy..." />
+      <button class="relative h-full w-[50px] flex justify-center items-center" id="search">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 aspect-square" viewBox="0 0 512 512">
           <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/>
         </svg>
@@ -82,8 +74,36 @@ use Utils\QueryParam;
     <!-- End | Sort + Filter -->
   </main>
   <!-- End | Main Content -->
-  <script type="module" src="<?= URL_SUBFOLDER; ?>/resources/js/loading.js"></script>
-  <script type="module" src="<?= URL_SUBFOLDER; ?>/resources/js/navMenu.js"></script>
-  <script type="module" src="<?= URL_SUBFOLDER; ?>/resources/js/app.js"></script>
+  <script type="text/javascript">
+    // Searches for the term whilst removing all other paramaters
+    const searchValue = document.getElementById('search-value');
+    const search = document.getElementById('search');
+
+    search.addEventListener('click', () => {
+      if (searchValue.value === "") {
+        window.location.href = "/recipies";
+        return;
+      }
+
+      window.location.href = `/recipies?search=${searchValue.value}`;
+    });
+
+    // Show / hide sort options + control styles
+    const showSortOptions = document.getElementById('show-sort-options');
+    const sortOptions = document.getElementById('sort-options');
+
+    showSortOptions.addEventListener('click', () => {
+      if (sortOptions.classList.contains('hidden')) {
+        sortOptions.classList.remove('hidden');
+        showSortOptions.classList.remove('rounded-br-md');
+        sortOptions.classList.add('flex');
+        return;
+      }
+
+      sortOptions.classList.remove('flex');
+      showSortOptions.classList.add('rounded-br-md');
+      sortOptions.classList.add('hidden');
+    })
+  </script>
 </body>
 </html>

@@ -8,13 +8,25 @@ use Symfony\Component\Routing\RouteCollection;
 
 class SignUpController
 {
-	public function create(User $defaultUser = null)
+	/** The main action */
+	public function index(RouteCollection $routes)
 	{
-		$user = $defaultUser !== null ? $defaultUser : new User();
+		if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+			$this->get($routes);
+		} elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
+			$this->post($routes);
+		} else {
+			echo "Unallowed method on route.";
+		}
+	}
+
+	public function get(RouteCollection $routes)
+	{
+		$user = new User();
 		require_once APP_ROOT . '/resources/views/signup.php';
 	}
 
-	public function store(RouteCollection $routes)
+	public function post(RouteCollection $routes)
 	{
 		$db = Database::getInstance();
 		$user = new User($_POST['firstName'], $_POST['lastName'], $_POST['email'], $_POST['password']);
@@ -26,11 +38,10 @@ class SignUpController
 
 		if ($result && $result['email'] == $user->email()) {
 			$error = "Email already in use";
-			$user->password("");
-			$routes->get('sign-up-form')->getPath();
+			require_once APP_ROOT . '/resources/views/signup.php';
 		} else {
 			$user->create();
-			$url = URL_SUBFOLDER . '/auth/log-in';
+			$url = $routes->get("log-in")->getPath();
 			header("Location: $url");
 		}
 	}

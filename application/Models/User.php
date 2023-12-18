@@ -2,8 +2,7 @@
 
 namespace App\Models;
 
-use App\Providers\Auth;
-use App\Repositories\UserRepository;
+use App\Providers\Session;
 use App\Providers\Database;
 use Utils\Response;
 
@@ -27,11 +26,11 @@ class User {
    * @return User | null The user if found, otherwise `null`
    */
   public static function getFromSession(): User | null {
-    if (!Auth::isValid()) {
+    if (!Session::isValid()) {
       return null;
     }
   
-    $user = User::read(Auth::getUserId());
+    $user = User::read(Session::getUserId());
   
     return $user;
   }

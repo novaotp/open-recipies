@@ -5,7 +5,7 @@ class Toast extends HTMLElement {
     }
 
     connectedCallback() {
-        let color;
+        let color = "bg-blue-500";
 
         switch (this.getAttribute("type")) {
             case "error":

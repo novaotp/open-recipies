@@ -3,32 +3,33 @@
 namespace App\Controllers;
 
 use App\Models\User;
-use App\Providers\Auth;
+use App\Providers\Session;
 use App\Providers\Database;
+use Symfony\Component\Routing\RouteCollection;
 
 class LogInController
 {
 	/** The main action */
-	public function index()
+	public function index(RouteCollection $routes)
 	{
 		if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-			$this->get();
+			$this->get($routes);
 		} elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
-			$this->post();
+			$this->post($routes);
 		} else {
 			echo "Unallowed method on route.";
 		}
 	}
 
     /** The get action */
-	public function get(User $defaultUser = null)
+	public function get(RouteCollection $routes)
 	{
-		$user = $defaultUser !== null ? $defaultUser : new User();
+		$user = new User();
         require_once APP_ROOT . '/resources/views/login.php';
 	}
 
 	/** The post action */
-	public function post()
+	public function post(RouteCollection $routes)
 	{
 		$db = Database::getInstance();
 		$user = new User("", "", $_POST["email"], $_POST["password"]);
@@ -39,12 +40,12 @@ class LogInController
 		$result = $query->fetch();
 
 		if ($result && password_verify($user->password(), $result['password'])) {
-			Auth::setUserId($result['id']);
-			$url = URL_SUBFOLDER . '/app';
+			Session::setUserId($result['id']);
+			$url = $routes->get('recipies')->getPath();
 			header("Location: $url");
 		} else {
 			$error = "Invalid credentials.";
-			$this->get($user);
+			require_once APP_ROOT . '/resources/views/login.php';
 		}
 	}
 }
