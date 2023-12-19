@@ -1,9 +1,3 @@
-<?php
-
-use Utils\QueryParam;
-
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
