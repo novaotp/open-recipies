@@ -29,7 +29,7 @@ class User {
       return null;
     }
   
-    $user = User::read(Session::getUserId());
+    $user = User::whereId(Session::getUserId());
   
     return $user;
   }
@@ -122,40 +122,82 @@ class User {
   }
 
   /**
-   * Returns a user if the id is set, all users otherwise.
-   * @param int $id An optional id that retrieves the specific user instead of all the users
-   * @return User | User[] | null A single user if the id is supplied, an array of user otherwise. `null` if an error occurred.
+   * Returns all the users in the database.
+   * @return User[] | null All the users, or `null` if an error occurred.
    */
-  public static function read(int $id = null): User|array|null
+  public static function all(int $id = null): array|null
   {
     try {
       $db = Database::getInstance();
 
-      if ($id === null) {
-        $query = $db->prepare('SELECT * FROM openrecipiesdb.user;');
-        $query->execute();
-        $result = $query->fetchAll();
+      $query = $db->prepare('SELECT * FROM openrecipiesdb.user;');
+      $query->execute();
+      $result = $query->fetchAll();
 
-        $users = [];
+      $users = [];
 
-        foreach ($result as $user) {
-          array_push($users, new User($user['first_name'], $user['last_name'], $user['email'], $user['password']));
-        }
+      foreach ($result as $user) {
+        array_push($users, new User($user['first_name'], $user['last_name'], $user['email'], $user['password']));
+      }
 
-        return $users;
+      return $users;
 
+    } catch (Exception $e) {
+      var_dump('An error occurred while getting all the users : ', $e->getMessage());
+      return null;
+
+    }
+  }
+
+  /**
+   * Gets a user via his id in the database.
+   * @param string $email The user's id in the database
+   * @return User | null The user if found, `null` otherwise
+   */
+  public static function whereId(int $id): User|null
+  {
+    try {
+      $db = Database::getInstance();
+      $query = $db->prepare('SELECT * FROM openrecipiesdb.user WHERE id = ? LIMIT 1;');
+      $query->bindValue(1, $id);
+      $query->execute();
+      $result = $query->fetch();
+
+      if ($result === "FALSE") {
+        return null;
       } else {
-        $query = $db->prepare('SELECT * FROM openrecipiesdb.user WHERE id = ? LIMIT 1;');
-        $query->bindValue(1, $id);
-        $query->execute();
-        $result = $query->fetch();
-
         return new User($result['first_name'], $result['last_name'], $result['email'], $result['password']);
-
       }
 
     } catch (Exception $e) {
-      var_dump('An error occurred while reading (a) user(s) : ', $e->getMessage());
+      var_dump('An error occurred while getting a user by his id : ', $e->getMessage());
+      return null;
+
+    }
+  }
+
+  /**
+   * Gets a user via his email.
+   * @param string $email The user's email address
+   * @return User | null The user if found, `null` otherwise
+   */
+  public static function whereEmail(string $email): User|null
+  {
+    try {
+      $db = Database::getInstance();
+      $query = $db->prepare('SELECT * FROM openrecipiesdb.user WHERE email = ? LIMIT 1;');
+      $query->bindValue(1, $email);
+      $query->execute();
+      $result = $query->fetch();
+
+      if ($result === "FALSE") {
+        return null;
+      } else {
+        return new User($result['first_name'], $result['last_name'], $result['email'], $result['password']);
+      }
+
+    } catch (Exception $e) {
+      var_dump('An error occurred while getting a user by his email : ', $e->getMessage());
       return null;
 
     }

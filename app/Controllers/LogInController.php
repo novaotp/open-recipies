@@ -9,18 +9,6 @@ use Symfony\Component\Routing\RouteCollection;
 
 class LogInController
 {
-	/** Send to the correct function depending on the method. */
-	public function index(RouteCollection $routes)
-	{
-		if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-			$this->get($routes);
-		} elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
-			$this->post($routes);
-		} else {
-			echo "Unallowed method on route.";
-		}
-	}
-
     /** Shows the login form. */
 	public function get(RouteCollection $routes)
 	{

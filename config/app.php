@@ -1,6 +1,6 @@
 <?php
 //site name
-define('SITE_NAME', 'OpenRecipies');
+define('SITE_NAME', 'Coo-King');
 
 //App Root
 define('APP_ROOT', dirname(dirname(__FILE__)));

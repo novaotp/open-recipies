@@ -1,0 +1,32 @@
+<?php
+
+// CLI-like tool to generate files or to run commmands
+ 
+require_once __DIR__ . '/vendor/autoload.php';
+ 
+$command = $argv[1];
+ 
+switch ($command) {
+    case 'autoload':
+        exec("composer dump-autoload");
+        break;
+
+    case 'controller:new':
+        $name = $argv[2];
+        $asResource = isset($argv[3]) && $argv[3] === "--resource";
+
+        if ($asResource) {
+            $file = file_get_contents('./server/templates/ResourceController.php');
+        } else {
+            $file = file_get_contents('./server/templates/Controller.php');
+        }
+
+        $controller = str_replace('{Name}', $name, $file);
+        file_put_contents('./app/Controllers/' . $name . '.php', $controller);
+
+        break;
+ 
+    default:
+        echo "Unknown command";
+        break;
+}

@@ -48,6 +48,8 @@ npm run dev
 ## Data sources
 
 Ingredients : https://corgis-edu.github.io/corgis/csv/ingredients/
+Read for [MVC Pattern](https://www.giuseppemaccario.com/how-to-build-a-simple-php-mvc-framework/)
+Meals : https://www.themealdb.com/api.php
 
 ## Author
 

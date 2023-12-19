@@ -1,6 +1,13 @@
 <?php
 
-define('DB_HOST', 'localhost:3306');
-define('DB_USER', 'root');
-define('DB_PASS', 'Pa$$w0rd');
-define('DB_NAME', 'openrecipiesdb');
+use Dotenv\Dotenv;
+
+$dotEnv = Dotenv::createUnsafeImmutable(__DIR__);
+$dotenv->load();
+
+$DB_HOST = $_ENV['DB_HOST'];
+
+define('DB_HOST', $_ENV['DB_HOST']);
+define('DB_USER', $_ENV['DB_USER']);
+define('DB_PASS', $_ENV['DB_PASS']);
+define('DB_NAME', $_ENV['DB_NAME']);

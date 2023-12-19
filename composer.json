@@ -1,18 +1,29 @@
 {
     "name": "novaotp/open-recipies",
     "description": "Open Recipies is a website developed for an exam in PR_WEB.",
+    "readme": "./README.md",
+    "license": "MIT License",
+    "authors": [
+        {
+            "name": "Sajidur Rahman",
+            "role": "Lead Developer",
+            "email": "rahmansajidur30@gmail.com"
+        }
+    ],
+    "version": "0.1.0",
     "autoload": {
         "psr-4": {
-            "App\\": "application/",
+            "App\\": "app/",
             "Utils\\": "utils/"
         },
         "classmap": [
-            "application/",
+            "app/",
             "utils/"
         ]
     },
     "require": {
         "symfony/routing": "^7.0",
-        "symfony/http-foundation": "^7.0"
+        "symfony/http-foundation": "^7.0",
+        "vlucas/phpdotenv": "^5.6"
     }
 }

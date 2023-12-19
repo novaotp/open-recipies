@@ -25,7 +25,7 @@ class RecipiesController
 		/** Matches the meals with the search param. */
 		foreach (Meal::all() as $meal)
 		{
-			if ($search === "" || str_starts_with(strtolower($meal->name), $search))
+			if ($search === "" || str_contains(strtolower($meal->name), $search))
             {
                 array_push($meals, $meal);
             }
