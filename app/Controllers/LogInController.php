@@ -9,6 +9,15 @@ use Symfony\Component\Routing\RouteCollection;
 
 class LogInController
 {
+	public function index(RouteCollection $routes)
+    {
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            $this->post($routes);
+        } else {
+            $this->get($routes);
+        }
+    }
+	
     /** Shows the login form. */
 	public function get(RouteCollection $routes)
 	{

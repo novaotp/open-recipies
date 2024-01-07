@@ -12,6 +12,15 @@ use App\Models\User;
  */
 class SignUpController
 {
+    public function index(RouteCollection $routes)
+    {
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            $this->post($routes);
+        } else {
+            $this->get($routes);
+        }
+    }
+
     /**
      * Shows a form for the `/auth/sign-up` page.
      * @param RouteCollection $routes All the defined routes in `/routes/web.php` file. Automatically injected by the framework.
@@ -26,7 +35,7 @@ class SignUpController
      * Checks that the email isn't used yet, then creates a new user and sends him to the login page.
      * @param RouteCollection $routes All the defined routes in `/routes/web.php` file. Automatically injected by the framework.
      */
-    public function form(RouteCollection $routes) 
+    public function post(RouteCollection $routes) 
     {
         $db = Database::getInstance();
 		$user = new User($_POST['firstName'], $_POST['lastName'], $_POST['email'], $_POST['password']);

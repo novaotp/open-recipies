@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign Up | Coo-King</title>
-  <link type="text/css" rel="stylesheet" href="/resources/styles/globals.min.css" />
+  <link type="text/css" rel="stylesheet" href="/resources/styles/globals.css" />
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,700;0,900;1,400&display=swap">
 </head>

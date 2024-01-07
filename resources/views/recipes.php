@@ -1,6 +1,9 @@
 <?php
 
-use Utils\QueryParam;
+use App\Models\Recipe;
+
+/** @var array $meals */
+$meals;
 
 ?>
 
@@ -11,7 +14,7 @@ use Utils\QueryParam;
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Recipies | Coo-King</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link type="text/css" rel="stylesheet" href="/resources/styles/globals.min.css" />
+  <link type="text/css" rel="stylesheet" href="/resources/styles/globals.css" />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,700;0,900;1,400&display=swap">
 </head>
 <body class="relative z-0">
@@ -34,9 +37,13 @@ use Utils\QueryParam;
     <!-- Start | Meals List -->
     <ul class="relative w-full mt-5 flex flex-col gap-5">
       <?php foreach ($meals as $meal) : ?>
+      <?php
+      /** @var Recipe $meal */
+      $meal;
+      ?>
       <li class="relative h-[200px] w-full flex justify-between">
         <a
-          href="<?= str_replace('{id}', $meal->id, $routes->get('recipy')->getPath()); ?>"
+          href="<?= str_replace('{id}', $meal->id, $routes->get('recipe')->getPath()); ?>"
           class="relative w-full h-full p-5 flex flex-col justify-end items-start rounded-xl bg-[url(<?= $meal->thumbnail_url; ?>)] bg-cover bg-center shadow-[inset_0_-120px_60px_-60px_rgba(34,34,34,0.9)]"
         >
           <span class="text-2xl font-bold text-white"><?= $meal->name; ?></span>

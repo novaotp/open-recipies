@@ -25,7 +25,7 @@ $uri = $_SERVER["REQUEST_URI"];
                 <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
             </svg>
             </button>
-            <a href="<?= $routes->get('recipies')->getPath(); ?>" class="text-white p-2 flex items-center">
+            <a href="<?= $routes->get('recipes')->getPath(); ?>" class="text-white p-2 flex items-center">
                 <img width="40" src="/public/logo/logo.svg" alt="Coo-King Logo"></img>&nbsp;<span>Coo-King</span>
             </a>
         </nav>
@@ -41,21 +41,12 @@ $uri = $_SERVER["REQUEST_URI"];
                 </a>
             </li>
             <li class="relative w-full h-[60px] mb-5">
-                <a href="<?= $routes->get('recipies')->getPath(); ?>" class="relative <?= $uri === $routes->get('recipies')->getPath() ? "bg-white text-gray-800" : "bg-gray-800 text-white"; ?> w-full h-full p-5 rounded-xl flex justify-between items-center">
+                <a href="<?= $routes->get('recipes')->getPath(); ?>" class="relative <?= $uri === $routes->get('recipes')->getPath() ? "bg-white text-gray-800" : "bg-gray-800 text-white"; ?> w-full h-full p-5 rounded-xl flex justify-between items-center">
                 <!-- Food Bowl Icon -->
-                <svg xmlns="http://www.w3.org/2000/svg" class="<?= $uri === $routes->get('recipies')->getPath() ? "fill-gray-800" : "fill-white"; ?>" height="16" width="16" viewBox="0 0 512 512">
+                <svg xmlns="http://www.w3.org/2000/svg" class="<?= $uri === $routes->get('recipes')->getPath() ? "fill-gray-800" : "fill-white"; ?>" height="16" width="16" viewBox="0 0 512 512">
                     <path d="M0 192c0-35.3 28.7-64 64-64c.5 0 1.1 0 1.6 0C73 91.5 105.3 64 144 64c15 0 29 4.1 40.9 11.2C198.2 49.6 225.1 32 256 32s57.8 17.6 71.1 43.2C339 68.1 353 64 368 64c38.7 0 71 27.5 78.4 64c.5 0 1.1 0 1.6 0c35.3 0 64 28.7 64 64c0 11.7-3.1 22.6-8.6 32H8.6C3.1 214.6 0 203.7 0 192zm0 91.4C0 268.3 12.3 256 27.4 256H484.6c15.1 0 27.4 12.3 27.4 27.4c0 70.5-44.4 130.7-106.7 154.1L403.5 452c-2 16-15.6 28-31.8 28H140.2c-16.1 0-29.8-12-31.8-28l-1.8-14.4C44.4 414.1 0 353.9 0 283.4z"/>
                 </svg>
-                <span>All recipies</span>
-                </a>
-            </li>
-            <li class="<?= $isConnected ? "block" : "hidden" ?> relative w-full h-[60px]">
-                <a href="<?= $routes->get('new-recipy')->getPath(); ?>" class="relative <?= $uri === $routes->get('new-recipy')->getPath() ? "bg-white text-gray-800" : "bg-gray-800 text-white"; ?> w-full h-full p-5 rounded-xl flex justify-between items-center">
-                <!-- Plus Icon -->
-                <svg xmlns="http://www.w3.org/2000/svg" class="<?= $uri === $routes->get('new-recipy')->getPath() ? "fill-gray-800" : "fill-white"; ?>" height="16" width="14" viewBox="0 0 448 512"><!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
-                    <path d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z" />
-                </svg>
-                <span>New recipy</span>
+                <span>All recipes</span>
                 </a>
             </li>
             </div>
