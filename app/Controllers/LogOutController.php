@@ -13,7 +13,7 @@ class LogOutController
 	{
 		Session::destroy();
 
-        $url = $routes->get('recipies')->getPath();
+        $url = $routes->get('recipes')->getPath();
         header("Location: $url");
 	}
 }

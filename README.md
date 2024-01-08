@@ -1,12 +1,6 @@
-# OpenRecipies
+# OpenRecipes
 
-OpenRecipies is a webapp to search for or create recipies.
-
-Features :
-
-- Create/modify/delete your own recipies
-- Favorite recipies
-- Discuss with people around the globe
+OpenRecipes is a webapp to search for recipies.
 
 ## Getting started
 
@@ -45,11 +39,12 @@ npm run dev
 
 6. Open http://127.0.0.1:3000 in your browser to see the app.
 
-## Data sources
+## Sources
 
-Ingredients : https://corgis-edu.github.io/corgis/csv/ingredients/
-Read for [MVC Pattern](https://www.giuseppemaccario.com/how-to-build-a-simple-php-mvc-framework/)
-Meals : https://www.themealdb.com/api.php
+Ingredients : https://corgis-edu.github.io/corgis/csv/ingredients/  
+Building a basic MVC pattern : https://www.giuseppemaccario.com/how-to-build-a-simple-php-mvc-framework/  
+Meals API : https://www.themealdb.com/api.php  
+Using cURL : https://brightdata.com/blog/how-tos/curl-get-request-with-php
 
 ## Author
 

@@ -2,10 +2,10 @@
 
 use Dotenv\Dotenv;
 
-$dotEnv = Dotenv::createUnsafeImmutable(__DIR__);
+$dotenv = Dotenv::createUnsafeImmutable(dirname(__DIR__));
 $dotenv->load();
 
-$DB_HOST = $_ENV['DB_HOST'];
+$dotenv->required(['DB_HOST', 'DB_NAME', 'DB_USER', 'DB_PASS']);
 
 define('DB_HOST', $_ENV['DB_HOST']);
 define('DB_USER', $_ENV['DB_USER']);

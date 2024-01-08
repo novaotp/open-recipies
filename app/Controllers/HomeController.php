@@ -11,7 +11,7 @@ class HomeController
 	 */
 	public function index(RouteCollection $routes)
 	{
-		$url = $routes->get("recipies")->getPath();
+		$url = $routes->get("recipes")->getPath();
 		header("Location: $url");
 	}
 }

@@ -6,7 +6,6 @@ use PDO, PDOException;
 
 class Database
 {
-
   /** Returns an instance of the `mysql` database connection. */
   public static function getInstance(): PDO
   {

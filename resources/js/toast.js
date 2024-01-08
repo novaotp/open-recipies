@@ -20,7 +20,7 @@ class Toast extends HTMLElement {
         }
 
         const toast = document.createElement("div");
-        toast.className = `absolute top-5 left-5 right-5 flex justify-center items-center ${color} rounded-md p-5`;
+        toast.className = `absolute top-5 left-5 right-5 flex justify-center items-center ${color} text-white rounded-md p-5`;
         toast.innerHTML = this.getAttribute("message");
 
         const temp = document.importNode(toast, true);
