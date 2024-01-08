@@ -1,5 +1,7 @@
 <?php
 
+/** Using Dotenv because I had some problems otherwise. */
+
 use Dotenv\Dotenv;
 
 $dotenv = Dotenv::createUnsafeImmutable(dirname(__DIR__));

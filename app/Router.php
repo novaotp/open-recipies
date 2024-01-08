@@ -12,7 +12,7 @@ use Symfony\Component\Routing\Exception\NoConfigurationException;
 
 class Router
 {
-    public function __invoke(RouteCollection $routes)
+    public function handle(RouteCollection $routes)
     {
         $context = new RequestContext();
         $context->fromRequest(Request::createFromGlobals());
@@ -53,4 +53,4 @@ class Router
 
 // Invoke
 $router = new Router();
-$router($routes);
+$router->handle($routes);
