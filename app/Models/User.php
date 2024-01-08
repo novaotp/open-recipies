@@ -111,7 +111,7 @@ class User
         try {
             $db = Database::getInstance();
 
-            $query = $db->prepare("INSERT INTO openrecipiesdb.user(first_name, last_name, email, password) VALUES(?, ?, ?, ?);");
+            $query = $db->prepare("INSERT INTO openrecipesdb.user(first_name, last_name, email, password) VALUES(?, ?, ?, ?);");
             $query->bindValue(1, $this->firstName);
             $query->bindValue(2, $this->lastName);
             $query->bindValue(3, $this->email);
@@ -134,7 +134,7 @@ class User
         try {
             $db = Database::getInstance();
 
-            $query = $db->prepare('SELECT * FROM openrecipiesdb.user;');
+            $query = $db->prepare('SELECT * FROM openrecipesdb.user;');
             $query->execute();
             $result = $query->fetchAll();
 
@@ -160,7 +160,7 @@ class User
     {
         try {
             $db = Database::getInstance();
-            $query = $db->prepare('SELECT * FROM openrecipiesdb.user WHERE id = ? LIMIT 1;');
+            $query = $db->prepare('SELECT * FROM openrecipesdb.user WHERE id = ? LIMIT 1;');
             $query->bindValue(1, $id);
             $query->execute();
             $result = $query->fetch();
@@ -185,7 +185,7 @@ class User
     {
         try {
             $db = Database::getInstance();
-            $query = $db->prepare('SELECT * FROM openrecipiesdb.user WHERE email = ? LIMIT 1;');
+            $query = $db->prepare('SELECT * FROM openrecipesdb.user WHERE email = ? LIMIT 1;');
             $query->bindValue(1, $email);
             $query->execute();
             $result = $query->fetch();
@@ -211,7 +211,7 @@ class User
         try {
             $db = Database::getInstance();
 
-            $query = $db->prepare("UPDATE openrecipiesdb.user SET first_name = ?, last_name = ?, email = ?, password = ? WHERE id = ?;");
+            $query = $db->prepare("UPDATE openrecipesdb.user SET first_name = ?, last_name = ?, email = ?, password = ? WHERE id = ?;");
             $query->bindValue(1, $this->firstName);
             $query->bindValue(2, $this->lastName);
             $query->bindValue(3, $this->email);
@@ -236,7 +236,7 @@ class User
         try {
             $db = Database::getInstance();
 
-            $query = $db->prepare("DELETE FROM openrecipiesdb.user WHERE id = ?;");
+            $query = $db->prepare("DELETE FROM openrecipesdb.user WHERE id = ?;");
             $query->bindValue(1, $id);
             $query->execute();
 

@@ -31,14 +31,14 @@ class LogInController
 		$db = Database::getInstance();
 		$user = new User("", "", $_POST["email"], $_POST["password"]);
 
-		$query = $db->prepare('SELECT * FROM openrecipiesdb.user WHERE email = ? LIMIT 1;');
+		$query = $db->prepare('SELECT * FROM openrecipesdb.user WHERE email = ? LIMIT 1;');
 		$query->bindValue(1, $user->email());
 		$query->execute();
 		$result = $query->fetch();
 
 		if ($result && password_verify($user->password(), $result['password'])) {
 			Session::setUserId($result['id']);
-			$url = $routes->get('recipies')->getPath();
+			$url = $routes->get('recipes')->getPath();
 			header("Location: $url");
 		} else {
 			$error = "Invalid credentials.";

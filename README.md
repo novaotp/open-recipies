@@ -1,12 +1,6 @@
-# OpenRecipies
+# OpenRecipes
 
-OpenRecipies is a webapp to search for or create recipies.
-
-Features :
-
-- Create/modify/delete your own recipies
-- Favorite recipies
-- Discuss with people around the globe
+OpenRecipes is a webapp to search for recipies.
 
 ## Getting started
 

@@ -2,7 +2,8 @@
 
 namespace App\Models;
 
-use App\Providers\Curl;
+use App\Providers\Database;
+use Exception;
 
 class Recipe {
     public readonly int $id;
@@ -10,89 +11,75 @@ class Recipe {
     public readonly string $category;
     public readonly string $instructions;
     public readonly string $thumbnail_url;
-    public readonly array $ingredients;
 
-    public function __construct(int $id, string $name = "", string $category = "", string $instructions = "", string $thumbnail_url = "", array $ingredients = [])
+    public function __construct(int $id, string $name = "", string $category = "", string $instructions = "", string $thumbnail_url = "")
     {
         $this->id = $id;
         $this->name = $name;
         $this->category = $category;
         $this->instructions = $instructions;
         $this->thumbnail_url = $thumbnail_url;
-        $this->ingredients = $ingredients;
     }
 
     /**
-     * Gets an `x` amount of random meals.
-     * @return array|null An array of random meals, if an error occurred : `null`.
+     * Returns all the recipes, sorting with the search param.
      */
-    public static function random(int $count): array|null
+    public static function all(string $search = ""): array|null
     {
-        $recipes = [];
+        try {
+            $db = Database::getInstance();
 
-        for ($i = 0; $i < $count; $i++) {
-            $response = (array) Curl::get("https://www.themealdb.com/api/json/v1/1/random.php");
+            $query = $db->prepare("SELECT * FROM openrecipesdb.recipe;");
+            $query->execute();
 
-            if ($response === null) {
-                return null;
+            $result = $query->fetchAll();
+
+            $recipes = [];
+
+            foreach ($result as $recipe) {
+                if ($search === "" || str_contains(strtolower($recipe['name']), strtolower($search))) {
+                    array_push($recipes, new Recipe($recipe["id"], $recipe['name'], Category::where($recipe["category_id"]), $recipe['instructions'], $recipe['thumbnail_url']));
+                }
             }
 
-            $meal = $response["meals"][0];
-
-            array_push($recipes, Recipe::processRecipe($meal));
+            return $recipes;
+        } catch (Exception $e) {
+            var_dump("Something went wrong while fetching all the recipes : ", $e->getMessage());
+            return null;
         }
+    }
 
-        return $recipes;
+    /** Returns a random recipe. */
+    public static function random(): Recipe|null
+    {
+        $randomId = rand(1, 100);
+        return Recipe::where($randomId);
     }
 
     /**
-     * Gets a meal via it's id.
-     * @param int $id The id of the meal
-     * @return Recipe|null A meal, if an error occurred : `null`.
+     * Returns a recipe via its id.
+     * @param int $id The id of the recipe
+     * @return Recipe|null A recipe, if an error occurred : `null`.
      */
     public static function where(int $id): Recipe|null
     {
-		$response = (array) Curl::get("https://www.themealdb.com/api/json/v1/1/lookup.php", ['i' => $id]);
+		try {
+            $db = Database::getInstance();
 
-        if ($response === null) {
+            $query = $db->prepare("SELECT * FROM openrecipesdb.recipe WHERE id = ? LIMIT 1;");
+            $query->bindValue(1, $id);
+            $query->execute();
+
+            $result = $query->fetch();
+
+            if ($result === "FALSE") {
+                return null;
+            } else {
+                return new Recipe($result["id"], $result["name"], Category::where($result["category_id"]), $result["instructions"], $result["thumbnail_url"]);
+            }
+        } catch (Exception $e) {
+            var_dump("Something went wrong while fetching all the recipes : ", $e->getMessage());
             return null;
         }
-
-        $meal = $response["meals"][0];
-
-        return Recipe::processRecipe($meal);
-    }
-
-    /**
-     * Processes a meal array into a Recipe object.
-     * @param array $meal The meal array
-     * @return Recipe The processed meal
-     */
-    private static function processRecipe(array $meal): Recipe {
-        $id = (int) $meal["idMeal"];
-        $name = $meal["strMeal"];
-        $category = $meal["strCategory"];
-        $instructions = $meal["strInstructions"];
-        $thumbnail_url = $meal["strMealThumb"];
-
-        $ingredients = [];
-        $ingredientIndex = 1;
-
-        $INGREDIENT_ID_LIMIT = 20;
-
-        while ($ingredientIndex <= $INGREDIENT_ID_LIMIT) {
-            $ingredientName = $meal["strIngredient$ingredientIndex"];
-            $quantity = $meal["strMeasure$ingredientIndex"];
-
-            if ($ingredientName !== null) {
-                array_push($ingredients, new Ingredient($ingredientName, $quantity));
-                $ingredientIndex += 1;
-                continue;
-            } 
-
-            break;
-        }
-
-        return new Recipe($id, $name, $category, $instructions, $thumbnail_url, $ingredients);
     }
 }

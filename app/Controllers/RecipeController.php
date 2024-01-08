@@ -17,10 +17,9 @@ class RecipeController
 		}
 
 		$isConnected = Session::isValid();
-		$sort = isset($_GET['sort']) ? $_GET['sort'] : '';
 		$search = isset($_GET['search']) ? $_GET['search'] : '';
 
-		$meals = Recipe::random(10);
+		$recipes = Recipe::all($search);
 
 		require_once APP_ROOT . '/resources/views/recipes.php';
 	}
@@ -28,7 +27,12 @@ class RecipeController
 	/** Show a specific recipe via it's id. */
 	public function show(int $id, RouteCollection $routes)
 	{
-		$meal = Recipe::where($id);
+		if ($id > 100) {
+			$url = $routes->get("recipes")->getPath();
+			header("Location: $url");
+		}
+
+		$recipe = Recipe::where($id);
 		require_once APP_ROOT . '/resources/views/recipe.php';
 	}
 }
